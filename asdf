@@ -2,8 +2,8 @@ import java.util.Arrays;
 
 public class Runner {
 	public static void main(String[] args) {	
-		int [] test1 = {0,1,6,8};
-		int [] test2 = {2,4,7,9};
+		String [] test1 = {"A", "H", "J", "M", "W", "Y"};
+		String [] test2 = {"E", "G", "Z", "Z", "Z"};
 	
 		long start = System.nanoTime();
 		ArrayMethods2.merge(test1, test2);
@@ -20,6 +20,7 @@ public class Runner {
 
 
 
+
 public class ArrayMethods2 {
 	
 	public static int[] merge(int[] list1,int[] list2) {
@@ -28,12 +29,12 @@ public class ArrayMethods2 {
 		int right = 0;
 		for (int i = 0; i < list1.length + list2.length;i++) {
 			if (left == list1.length) {
-				merge[list1.length+list2.length-1] = list2[right];
-				return merge;
+				merge[i] = list2[right];
+				continue;
 			}
 			if (right == list2.length) {
-				merge[list1.length+list2.length-1] = list2[left];
-				return merge;
+				merge[i] = list2[left];
+				continue;
 			}
 			if (list1[left] > list2[right]) {
 				merge[i] = list2[right];
@@ -46,5 +47,33 @@ public class ArrayMethods2 {
 		}
 		return merge;
 	}
+	public static String[] merge(String[] list1,String[] list2) {
+		String [] merge = new String[list1.length+list2.length];
+		int left = 0;
+		int right = 0;
+		for (int i = 0; i < list1.length + list2.length;i++) {
+			if (left == list1.length) {
+				merge[i] = list2[right];
+				continue;
+			}
+			if (right == list2.length) {
+				merge[i] = list2[left];
+				continue;
+			}
+			if (list1[left].compareTo(list2[right]) > 0) {
+				merge[i] = list2[right];
+				right++;
+			}
+			else {
+				merge[i] = list1[left];
+				left++;
+			}
+		}
+		return merge;
+	}
 	
+	public static int partition(int[] list) {
+		int pivot = list[0];
+		//http://www.javamadesoeasy.com/2015/01/quick-sort.html//
+	}
 }
